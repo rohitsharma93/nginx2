@@ -1,5 +1,6 @@
 # Use an appropriate base image
 FROM nginx:latest
+RUN chown -R nginx:nginx /usr/share/nginx/html
 
 # Copy your Nginx configuration file to the container
 COPY nginx.conf /etc/nginx/nginx.conf
