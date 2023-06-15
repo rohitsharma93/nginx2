@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rohitsharma93/nginx.git"
+    "url": "git+https://github.com/rohitsharma93/nginx2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rohitsharma93/nginx/issues"
+    "url": "https://github.com/rohitsharma93/nginx2/issues"
   },
-  "homepage": "https://github.com/rohitsharma93/nginx#readme"
+  "homepage": "https://github.com/rohitsharma93/nginx2#readme"
 }
