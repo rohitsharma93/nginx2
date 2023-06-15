@@ -1,28 +1,29 @@
-#
-# Nginx Dockerfile
-#
-# https://github.com/dockerfile/nginx
-#
+# Base image
+FROM node:latest 
 
-# Pull base image.
-FROM ubuntu:latest
+# Set working directory
+WORKDIR /
 
-# Install Nginx.
-RUN \
-  apt-get update && \
-  apt-get install -y nginx && \
-  rm -rf /var/lib/apt/lists/* && \
-  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
-  chown -R www-data:www-data /var/lib/nginx
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Define mountable directories.
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+# Install dependencies
+RUN npm install
 
-# Define working directory.
-WORKDIR /etc/nginx
+# Copy project files
+COPY . .
 
-# Define default command.
-CMD ["nginx"]
+# Build the application
+RUN npm run build
 
-# Expose ports.
+# NGINX stage
+FROM nginx:latest
+
+# Copy built files from the previous stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy NGINX configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port
 EXPOSE 80
