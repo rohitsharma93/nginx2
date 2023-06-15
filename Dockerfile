@@ -1,10 +1,3 @@
-#
-# Nginx Dockerfile
-#
-# https://github.com/dockerfile/nginx
-#
-
-# Pull base image.
 FROM ubuntu:latest
 
 # Install Nginx.
@@ -20,11 +13,11 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 
 # Define working directory.
 WORKDIR /etc/nginx
+COPY mypackage.json ./
 
 # Define default command.
 CMD ["nginx"]
 
 # Expose ports.
 EXPOSE 80
-
-
+EXPOSE 443
