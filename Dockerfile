@@ -1,15 +1,30 @@
-# Use an appropriate base image
-FROM nginx:latest
-RUN chown -R nginx:nginx /usr/share/nginx/html
+#
+# Nginx Dockerfile
+#
+# https://github.com/dockerfile/nginx
+#
 
-# Copy your Nginx configuration file to the container
-COPY nginx.conf /etc/nginx/nginx.conf
+# Pull base image.
+FROM ubuntu:latest
 
-# Copy your application files to the appropriate directory
-COPY app /usr/share/nginx/html
+# Install Nginx.
+RUN \
+  apt-get update && \
+  apt-get install -y nginx && \
+  rm -rf /var/lib/apt/lists/* && \
+  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+  chown -R www-data:www-data /var/lib/nginx
 
-# Expose ports
+# Define mountable directories.
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+
+# Define working directory.
+WORKDIR /etc/nginx
+
+# Define default command.
+CMD ["nginx"]
+
+# Expose ports.
 EXPOSE 80
+EXPOSE 443
 
-# Define default command
-CMD ["nginx", "-g", "daemon off;"]
