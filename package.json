@@ -4,7 +4,11 @@
   "description": "nginx",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build"
+    "install": "npm install",
+    "build": "npm build"
+  },
+  "dependencies": {
+    "package1": "version1"
   },
   "repository": {
     "type": "git",
