@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "nginx",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "npm run build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rohitsharma93/nginx2.git"
