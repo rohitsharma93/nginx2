@@ -8,7 +8,7 @@
     "build": "npm build"
   },
   "dependencies": {
-    "package1": "version1"
+    "package1": "package.json"
   },
   "repository": {
     "type": "git",
